@@ -1,6 +1,7 @@
 import argparse
 
 from csv_reader import read_csv
+from calculations import calculate_median_coffee_spent_per_student
 
 
 def main():
@@ -11,7 +12,9 @@ def main():
     all_rows = []
     for file_path in args.files:
         all_rows.extend(read_csv(file_path))
-    print(all_rows)
+    
+    result = calculate_median_coffee_spent_per_student(all_rows)
+    print(result)
     
 
 if __name__ == "__main__":
