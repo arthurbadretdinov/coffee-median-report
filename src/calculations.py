@@ -2,7 +2,7 @@ from collections import defaultdict
 import statistics
 
 
-def calculate_median_coffee_spent_per_student(rows):
+def calculate_median_coffee(rows):
     students_spent = defaultdict(list)
     for row in rows:
         students_spent[row['student']].append(row['coffee_spent'])
