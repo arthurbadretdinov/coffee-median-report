@@ -1,4 +1,5 @@
 import argparse
+from tabulate import tabulate
 
 from csv_reader import read_csv
 from calculations import calculate_median_coffee
@@ -22,8 +23,9 @@ def main():
     
     report_func = REPORTS[args.report]
     result = report_func(all_rows)
-    print(result)
     
+    print(tabulate(result.items(), headers=["student", "median_coffee"], tablefmt="grid"))
+
 
 if __name__ == "__main__":
     main()
