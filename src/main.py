@@ -1,21 +1,11 @@
-import argparse
 from tabulate import tabulate
 
+from cli import REPORTS, parse_arguments
 from csv_reader import read_csv
-from calculations import calculate_median_coffee
-
-REPORTS = {
-    "median-coffee": calculate_median_coffee
-}
 
 
 def main():
-    parser = argparse.ArgumentParser()
-    
-    parser.add_argument("--files", nargs='+', type=str, required=True)
-    parser.add_argument("--report", type=str, required=True, choices=REPORTS.keys())
-    
-    args = parser.parse_args()
+    args = parse_arguments()
     
     all_rows = []
     for file_path in args.files:
