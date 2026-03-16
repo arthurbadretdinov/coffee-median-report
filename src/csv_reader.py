@@ -18,7 +18,7 @@ def read_csv(file_path):
     
     try:
         with open(path, encoding='utf-8') as f:
-            reader = csv.DictReader(f)
+            reader = csv.reader(f)
             return list(reader)
     except PermissionError:
         raise

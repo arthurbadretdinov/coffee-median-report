@@ -2,6 +2,7 @@ from tabulate import tabulate
 
 from cli import REPORTS, parse_arguments
 from csv_reader import read_csv
+from validations import validate_data
 
 
 def main():
@@ -9,7 +10,8 @@ def main():
     
     all_rows = []
     for file_path in args.files:
-        all_rows.extend(read_csv(file_path))
+        rows = read_csv(file_path)
+        all_rows.extend(validate_data(rows))
     
     report_func = REPORTS[args.report]
     result = report_func(all_rows)
