@@ -8,13 +8,13 @@ def read_csv(file_path):
         raise FileNotFoundError(f"File {file_path} not found")
     
     if not path.is_file():
-        raise ValueError(f"Path {file_path} is not a file")
+        raise IsADirectoryError(f"Path {file_path} is not a file")
     
     if path.suffix.lower() != ".csv":
-        raise ValueError(f"File {file_path} is not a CSV file")
+        raise TypeError(f"File {file_path} is not a CSV file")
 
     if path.stat().st_size == 0:
-        raise ValueError(f"File {file_path} is empty")    
+        raise EOFError(f"File {file_path} is empty")    
     
     with open(path, encoding='utf-8') as f:
         reader = csv.reader(f)
