@@ -5,7 +5,7 @@ import statistics
 def calculate_median_coffee(rows):
     students_spent = defaultdict(list)
     for row in rows:
-        students_spent[row['student']].append(float(row['coffee_spent']))
+        students_spent[row['student']].append(row['coffee_spent'])
     
     median_spent = {}
     for student, coffee_spent_list in students_spent.items():
