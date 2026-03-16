@@ -16,11 +16,6 @@ def read_csv(file_path):
     if path.stat().st_size == 0:
         raise ValueError(f"File {file_path} is empty")    
     
-    try:
-        with open(path, encoding='utf-8') as f:
-            reader = csv.reader(f)
-            return list(reader)
-    except PermissionError:
-        raise
-    except UnicodeDecodeError:
-        raise
+    with open(path, encoding='utf-8') as f:
+        reader = csv.reader(f)
+        return list(reader)
