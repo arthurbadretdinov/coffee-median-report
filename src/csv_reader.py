@@ -2,7 +2,7 @@ import csv
 from pathlib import Path
 
 
-def read_csv(file_path):
+def read_csv(file_path: str) -> list[list[str]]:
     path = Path(file_path)
 
     if not path.exists():

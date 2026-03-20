@@ -1,11 +1,13 @@
 import argparse
+from typing import Type
 
-from calculations import calculate_median_coffee
+from reports.base import Report
+from reports.median_coffee import MedianCoffeeReport
 
-REPORTS = {"median-coffee": calculate_median_coffee}
+REPORTS: dict[str, Type[Report]] = {"median-coffee": MedianCoffeeReport}
 
 
-def parse_arguments(args_list=None):
+def parse_arguments(args_list: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser()
 
     parser.add_argument("--files", nargs="+", type=str, required=True)
