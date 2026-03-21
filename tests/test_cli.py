@@ -1,5 +1,6 @@
 import pytest
 from contextlib import nullcontext as does_not_raise
+from typing import ContextManager, Any
 
 from cli import parse_arguments
 
@@ -56,7 +57,9 @@ from cli import parse_arguments
         ),  # чтение трёх файлов
     ],
 )
-def test_parse_arguments_error(args_list, expectation):
+def test_parse_arguments_error(
+    args_list: list[str], expectation: ContextManager[Any]
+) -> None:
     with expectation:
         parse_arguments(args_list)
 
@@ -95,7 +98,9 @@ def test_parse_arguments_error(args_list, expectation):
         ),
     ],
 )
-def test_parse_arguments_correct(args_list, files, report):
+def test_parse_arguments_correct(
+    args_list: list[str], files: list[str], report: str
+) -> None:
     args = parse_arguments(args_list)
 
     assert args.files == files

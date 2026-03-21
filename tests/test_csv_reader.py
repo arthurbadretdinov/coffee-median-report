@@ -1,5 +1,6 @@
 import pytest
 from contextlib import nullcontext as does_not_raise
+from typing import ContextManager, Any
 
 from csv_reader import read_csv
 
@@ -24,7 +25,7 @@ from csv_reader import read_csv
         ("data/permission_error.csv", pytest.raises(PermissionError)),  # нет прав
     ],
 )
-def test_read_csv_errors(file_path, expectation):
+def test_read_csv_errors(file_path: str, expectation: ContextManager[Any]) -> None:
     with expectation:
         read_csv(file_path)
 
@@ -37,7 +38,7 @@ def test_read_csv_errors(file_path, expectation):
         ("data/programming.csv"),
     ],
 )
-def test_read_csv_correct(file_path):
+def test_read_csv_correct(file_path: str) -> None:
     data = read_csv(file_path)
 
     assert isinstance(data, list)
@@ -52,7 +53,7 @@ def test_read_csv_correct(file_path):
         ("data/programming.csv", 46),
     ],
 )
-def test_read_csv_row_count(file_path, column_count):
+def test_read_csv_row_count(file_path: str, column_count: int) -> None:
     data = read_csv(file_path)
 
     assert len(data) == column_count

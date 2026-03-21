@@ -1,7 +1,7 @@
 from typing import TypedDict
 
 
-class StudentRecord(TypedDict):
+class StudentRecord(TypedDict, total=False):
     student: str
     date: str
     coffee_spent: float

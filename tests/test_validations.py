@@ -1,5 +1,6 @@
 import pytest
 from contextlib import nullcontext as does_not_raise
+from typing import ContextManager, Any
 
 from validations import validate_data, HEADER, NUMERIC_FIELD
 
@@ -69,7 +70,9 @@ invalid_type = [
         ),  # неправильный тип данных
     ],
 )
-def test_validate_data_errors(data_list, expectation):
+def test_validate_data_errors(
+    data_list: list[list[str]], expectation: ContextManager[Any]
+) -> None:
     with expectation:
         validate_data(data_list)
 
@@ -81,7 +84,7 @@ def test_validate_data_errors(data_list, expectation):
         valid_data2,
     ],
 )
-def test_validate_data_correct(data_list):
+def test_validate_data_correct(data_list: list[list[str]]) -> None:
     result = validate_data(data_list)
 
     assert isinstance(result, list)

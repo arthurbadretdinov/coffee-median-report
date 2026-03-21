@@ -1,18 +1,19 @@
 import pytest
 
-from calculations import calculate_median_coffee
+from models import StudentRecord
+from reports.median_coffee import MedianCoffeeReport
 
-data_empty = []
+data_empty: list[StudentRecord] = []
 
-result_empty = {}
+result_empty: dict[str, float] = {}
 
-data1 = [
+data1: list[StudentRecord] = [
     {"student": "Алексей Смирнов", "coffee_spent": 450.0},
 ]
 
-result1 = {"Алексей Смирнов": 450.0}
+result1: dict[str, float] = {"Алексей Смирнов": 450.0}
 
-data2 = [
+data2: list[StudentRecord] = [
     {"student": "Алексей Смирнов", "coffee_spent": 450.0},
     {"student": "Алексей Смирнов", "coffee_spent": 550.0},
     {"student": "Дарья Петрова", "coffee_spent": 200.0},
@@ -20,9 +21,9 @@ data2 = [
     {"student": "Дарья Петрова", "coffee_spent": 350.0},
 ]
 
-result2 = {"Алексей Смирнов": 500.0, "Дарья Петрова": 250.0}
+result2: dict[str, float] = {"Алексей Смирнов": 500.0, "Дарья Петрова": 250.0}
 
-data3 = [
+data3: list[StudentRecord] = [
     {"student": "Алексей Смирнов", "coffee_spent": 450.0},
     {"student": "Иван Кузнецов", "coffee_spent": 550.0},
     {"student": "Дарья Петрова", "coffee_spent": 200.0},
@@ -30,7 +31,7 @@ data3 = [
     {"student": "Сергей Козлов", "coffee_spent": 350.0},
 ]
 
-result3 = {
+result3: dict[str, float] = {
     "Иван Кузнецов": 550.0,
     "Алексей Смирнов": 450.0,
     "Сергей Козлов": 350.0,
@@ -48,5 +49,8 @@ result3 = {
         (data3, result3),
     ],
 )
-def test_calculate_median_coffee(rows, result):
-    assert calculate_median_coffee(rows) == result
+def test_calculate_median_coffee(
+    rows: list[StudentRecord], result: dict[str, float]
+) -> None:
+    report = MedianCoffeeReport()
+    assert report.calculate(rows) == result
